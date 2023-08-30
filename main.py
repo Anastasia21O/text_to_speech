@@ -1,16 +1,28 @@
-# This is a sample Python script.
+from io import BytesIO
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import pygame
+from gtts import gTTS
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+pygame.init()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def say(text):
+    tts = gTTS(text=text, lang='uk')
+    fp = BytesIO()
+    tts.write_to_fp(fp)
+    fp.seek(0)
+    pygame.mixer.init()
+    pygame.mixer.music.load(fp)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+mytext = "Привіт, хочу тобі допомогти!"
+say(mytext)
+
+# mytext1 = "Звукова доріжка №2!"
+# audio = gTTS(text=mytext1, lang="uk")
+# audio.save("example.mp3")
+# os.system("start example.mp3")
+
