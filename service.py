@@ -5,7 +5,6 @@ from gtts import gTTS
 
 
 # import os
-# import pyglet
 
 
 def say(text: str):
