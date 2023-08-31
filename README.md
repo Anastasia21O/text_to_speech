@@ -19,6 +19,6 @@
 Для роботи запустіть скріпт main.py:
 
 ```
-main.py
+python main.py
 ```
 
